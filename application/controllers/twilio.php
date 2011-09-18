@@ -13,7 +13,9 @@ class Twilio extends CI_Controller
 
     public function response()
     {
-	$this->load->view('response');
+	$data["fatal_error_count"] = $this->uri->segment(3);
+	
+	$this->load->view('response', $data);
     }
 
     public function callback()

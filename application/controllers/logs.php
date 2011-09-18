@@ -53,7 +53,7 @@ class Logs extends CI_Controller
 	$response = $client->request("/$ApiVersion/Accounts/$AccountSid/Calls", "POST", array(
 	    "To" => $this->config->item('phone_recipient'),
 	    "From" => $this->config->item('phone_sender'),
-	    "Url" => "http://blacklog.orchestra.io/index.php/twilio/response",
+	    "Url" => "http://blacklog.orchestra.io/index.php/twilio/response/$fatal_count",
 	    "StatusCallback" => "http://blacklog.orchestra.io/index.php/twilio/callback"
 		));
 
