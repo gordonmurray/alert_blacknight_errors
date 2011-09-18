@@ -53,12 +53,15 @@ class Logs extends CI_Controller
 	$response = $client->request("/$ApiVersion/Accounts/$AccountSid/Calls", "POST", array(
 	    "To" => $this->config->item('phone_recipient'),
 	    "From" => $this->config->item('phone_sender'),
-	    "Body" => "$fatal_count Fatal Errors found in logs"
+	    "Url" => "http://blacklog.orchestra.io/index.php/twilio/response",
+	    "StatusCallback" => "http://blacklog.orchestra.io/index.php/twilio/callback"
 		));
 
+	//print_r($response);
+
 	if ($response->IsError)
-	//echo "Error: {$response->ErrorMessage}";
-	    echo "Phone call NOT made to report Errors. Twilio account currently pending authorization to make International Calls (US to Ireland).<br />\n";
+	    echo "Error: {$response->ErrorMessage}";
+	//echo "Phone call NOT made to report Errors. Twilio account currently pending authorization to make International Calls (US to Ireland).<br />\n";
 	else
 	    echo "Phone call successfully made to report Errors. <br />\n";
     }
